@@ -8,7 +8,7 @@ import { GifsService } from '../../gifs/services/gifs.service';
 })
 export class SidebarComponent{
   
-  //con la inyeccion lista, usamos un getter
+  //con la inyeccion lista, usamos un getter que retorne 
   get historial(){
     return this.gifsService.historial;
   }

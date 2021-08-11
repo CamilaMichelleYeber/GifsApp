@@ -19,6 +19,11 @@ export class BusquedaComponent{
     //mostramos los valores en consola
     const valor =this.txtBusqueda.nativeElement.value;
    
+    //evitar que se guarden espacios vacios
+    if (valor.trim().length === 0) {
+      return;
+      
+    }
    
     this.gifs_Service.historialGifs(valor);
 

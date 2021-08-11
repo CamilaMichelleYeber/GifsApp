@@ -13,7 +13,7 @@
       
       <div class="list-group list-reset">
         <a href="#" class="list-group-item list-group-item-action bg-dark text-light bordes" *ngFor="let historial of historial">
-          {{historial}} 
+          {{historial | titlecase}} 
         </a>
         <!-- Entre llaves traje historial, pero en el video trae item, ambos funcionan. Cual es la diferencia? -->
       </div>
