@@ -8,17 +8,17 @@
       <hr class="text-light">
       <!-- Contenido de mi sidebar -->
       <h5 class="historial">Historial</h5>
+      
+      <!--**ngFor para mostrar mi historial de busqueda-->
+      
       <div class="list-group list-reset">
-        <a href="#" class="list-group-item list-group-item-action bg-dark text-light bordes">Dashboard</a>
+        <a href="#" class="list-group-item list-group-item-action bg-dark text-light bordes" *ngFor="let historial of historial">
+          {{historial}} 
+        </a>
+        <!-- Entre llaves traje historial, pero en el video trae item, ambos funcionan. Cual es la diferencia? -->
       </div>
   
-      <div class="list-group list-reset">
-        <a href="#" class="list-group-item list-group-item-action bg-dark text-light bordes">Dashboard</a>
-      </div>
-  
-      <div class="list-group list-reset">
-        <a href="#" class="list-group-item list-group-item-action bg-dark text-light bordes">Dashboard</a>
-      </div>
+     
   
     </div>
 
