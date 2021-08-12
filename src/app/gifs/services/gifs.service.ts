@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { SearchGifsResponse, Gif } from '../interface/gifs.interface';
 
 @Injectable({
   providedIn: 'root' //bloqueo de codigo
@@ -10,7 +11,7 @@ export class GifsService {
   private apiKey: string= 'xi9TrWCu2nVoTY6NVdBmHBF5RGO6s1AZ';
   private _historial: string[]=[];
   //propiedad que va a ser utilizada para almacenar mi data
-  public resultado: any[] = [];
+  public resultado: Gif[] = [];
 
   //creamos contructor para importar mi HttpClientModule
   constructor ( private http: HttpClient){}
@@ -32,8 +33,8 @@ export class GifsService {
     console.log(this._historial);
 
     //utilizaremos observable para llamar a mi propiedad http y hacer la peticion e interpolamos mi string url para pasarle el parametro que trae el valor de mi caja de busqueda
-    this.http.get(`https://api.giphy.com/v1/gifs/search?api_key=xi9TrWCu2nVoTY6NVdBmHBF5RGO6s1AZ&q=${historialBusqueda}&limit=10`)
-      .subscribe( (respuesta:any) => {
+    this.http.get<SearchGifsResponse>(`https://api.giphy.com/v1/gifs/search?api_key=xi9TrWCu2nVoTY6NVdBmHBF5RGO6s1AZ&q=${historialBusqueda}&limit=10`)
+      .subscribe( (respuesta) => {
         console.log(respuesta.data);
         this.resultado=respuesta.data; //lo acepta porque no esta seguro de si es un arreglo o no
       })
