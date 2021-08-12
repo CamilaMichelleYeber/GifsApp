@@ -32,7 +32,7 @@ export class GifsService {
     console.log(this._historial);
 
     //utilizaremos observable para llamar a mi propiedad http y hacer la peticion e interpolamos mi string url para pasarle el parametro que trae el valor de mi caja de busqueda
-    this.http.get(`https://api.giphy.com/v1/gifs/search?api_key=xi9TrWCu2nVoTY6NVdBmHBF5RGO6s1AZ=${{historialBusqueda}}&limit=10`)
+    this.http.get(`https://api.giphy.com/v1/gifs/search?api_key=xi9TrWCu2nVoTY6NVdBmHBF5RGO6s1AZ&q=${historialBusqueda}&limit=10`)
       .subscribe( (respuesta:any) => {
         console.log(respuesta.data);
         this.resultado=respuesta.data; //lo acepta porque no esta seguro de si es un arreglo o no
