@@ -1,2 +1,18 @@
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi suscipit in ad esse magnam quas deleniti voluptatem. Inventore adipisci, et sint ipsam id at nostrum quos tempora corrupti! Impedit, obcaecati.
-</p>
+<!-- Mostramos nuestros gifs -->
+<div class="row">
+    <div 
+    *ngFor="let gif of resultados"
+    class="col-md-4 col-md-6">
+
+        <div class="col">
+            <div class="card">
+                <img src="gif.images.downsized_medium.url" alt="gif.title">
+                <div class="card-body">
+                    <p class="card-text">
+                        <!-- {{gif.title}} lo comento porque no me interesa que se muestre -->
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
