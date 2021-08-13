@@ -13,7 +13,9 @@ export class GifsService {
   //propiedad que va a ser utilizada para almacenar mi data
   public resultado: Gif[] = [];
 
- 
+  /*get ultimo_resultado(){
+    return [...this.resultado];
+   }*/
 
   
   get historial(){
@@ -25,6 +27,11 @@ export class GifsService {
   constructor ( private http: HttpClient){
     //mostramos la informacion proporcionada por el localStorage en el panel lateral de nuestra web
     this._historial=JSON.parse(localStorage.getItem('historial')!) || [];
+
+    //mostramos la ultima busqueda en pantalla del historial al recargar el navegador
+   // this.resultado=JSON.parse(localStorage.getItem('ultimo_resultado')!) || [];
+   this.resultado=JSON.parse(localStorage.getItem('resultado')!) || [];
+
   }
 
   //insercion de nuevos valores al historial
@@ -38,6 +45,8 @@ export class GifsService {
     
     localStorage.setItem('historial', JSON.stringify(this._historial)); //grabamos en el localStorage la informacion de la caja de busqeuda
   
+
+
     }
     //console.log(this._historial);
 
@@ -46,6 +55,9 @@ export class GifsService {
       .subscribe( (respuesta) => {
         console.log(respuesta.data);
         this.resultado=respuesta.data; //lo acepta porque no esta seguro de si es un arreglo o no
+      //mostramos la ultima busqueda en pantalla
+      //localStorage.setItem('ultimo_resultado', JSON.stringify(this.resultado));
+      localStorage.setItem('resultado', JSON.stringify(this.resultado));
       })
 
   }
