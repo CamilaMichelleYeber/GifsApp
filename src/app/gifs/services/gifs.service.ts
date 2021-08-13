@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { SearchGifsResponse, Gif } from '../interface/gifs.interface';
 
 @Injectable({
@@ -10,6 +10,7 @@ export class GifsService {
   
   private apiKey: string= 'xi9TrWCu2nVoTY6NVdBmHBF5RGO6s1AZ';
   private _historial: string[]=[];
+  private servicioUrl: string= 'https://api.giphy.com/v1/gifs';
   //propiedad que va a ser utilizada para almacenar mi data
   public resultado: Gif[] = [];
 
@@ -46,12 +47,19 @@ export class GifsService {
     localStorage.setItem('historial', JSON.stringify(this._historial)); //grabamos en el localStorage la informacion de la caja de busqeuda
   
 
-
     }
-    //console.log(this._historial);
+   
+     //constante para almacenar los parametros de mi urlSearch
+     const params= new HttpParams()
+    //seteamos los parametros que queremos
+    .set('api_Key', this.apiKey)
+    .set('limit', '10')
+    .set('q', historialBusqueda);
+
+    console.log(params.toString());
 
     //utilizaremos observable para llamar a mi propiedad http y hacer la peticion e interpolamos mi string url para pasarle el parametro que trae el valor de mi caja de busqueda
-    this.http.get<SearchGifsResponse>(`https://api.giphy.com/v1/gifs/search?api_key=xi9TrWCu2nVoTY6NVdBmHBF5RGO6s1AZ&q=${historialBusqueda}&limit=10`)
+    this.http.get<SearchGifsResponse>(`${this.servicioUrl}/search`, {params})
       .subscribe( (respuesta) => {
         console.log(respuesta.data);
         this.resultado=respuesta.data; //lo acepta porque no esta seguro de si es un arreglo o no
