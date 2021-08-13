@@ -52,7 +52,7 @@ export class GifsService {
      //constante para almacenar los parametros de mi urlSearch
      const params= new HttpParams()
     //seteamos los parametros que queremos
-    .set('api_Key', this.apiKey)
+    .set('api_key', this.apiKey)
     .set('limit', '10')
     .set('q', historialBusqueda);
 
