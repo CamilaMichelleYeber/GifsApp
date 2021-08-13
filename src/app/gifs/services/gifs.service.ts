@@ -61,7 +61,7 @@ export class GifsService {
     //utilizaremos observable para llamar a mi propiedad http y hacer la peticion e interpolamos mi string url para pasarle el parametro que trae el valor de mi caja de busqueda
     this.http.get<SearchGifsResponse>(`${this.servicioUrl}/search`, {params})
       .subscribe( (respuesta) => {
-        console.log(respuesta.data);
+        //console.log(respuesta.data);
         this.resultado=respuesta.data; //lo acepta porque no esta seguro de si es un arreglo o no
       //mostramos la ultima busqueda en pantalla
       //localStorage.setItem('ultimo_resultado', JSON.stringify(this.resultado));
