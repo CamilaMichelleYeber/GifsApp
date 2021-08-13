@@ -13,12 +13,18 @@ export class GifsService {
   //propiedad que va a ser utilizada para almacenar mi data
   public resultado: Gif[] = [];
 
-  //creamos contructor para importar mi HttpClientModule
-  constructor ( private http: HttpClient){}
+ 
 
   
   get historial(){
    return [...this._historial];
+  }
+
+
+   //creamos contructor para importar mi HttpClientModule
+  constructor ( private http: HttpClient){
+    //mostramos la informacion proporcionada por el localStorage en el panel lateral de nuestra web
+    this._historial=JSON.parse(localStorage.getItem('historial')!) || [];
   }
 
   //insercion de nuevos valores al historial
@@ -28,9 +34,12 @@ export class GifsService {
 
     if (!this._historial.includes(historialBusqueda)) { //si lo incluye, ejecuta el codigo de adentro del condicional
       this._historial.unshift(historialBusqueda); //el ultimo dato que ponemos en la caja de busqueda se coloca primero en mi panel lateral
-    this._historial= this._historial.splice(0,10); //con esto cortamos nuestro array principal limitandolo de 0 a 10    
+    this._historial= this._historial.splice(0,10); //con esto cortamos nuestro array principal limitandolo de 0 a 10  
+    
+    localStorage.setItem('historial', JSON.stringify(this._historial)); //grabamos en el localStorage la informacion de la caja de busqeuda
+  
     }
-    console.log(this._historial);
+    //console.log(this._historial);
 
     //utilizaremos observable para llamar a mi propiedad http y hacer la peticion e interpolamos mi string url para pasarle el parametro que trae el valor de mi caja de busqueda
     this.http.get<SearchGifsResponse>(`https://api.giphy.com/v1/gifs/search?api_key=xi9TrWCu2nVoTY6NVdBmHBF5RGO6s1AZ&q=${historialBusqueda}&limit=10`)
