@@ -15,10 +15,12 @@ export class SidebarComponent{
   
 
   //inyectamos el servicio
-  constructor(private gifsService:GifsService){ 
-
+  constructor(private gifsService:GifsService){  
   }
   
- 
+ clickHistorial(click: string){
+    
+  this.gifsService.historialGifs(click);//muestra los gifs al hacer click en los resultados almacenados en el historial 
+ }
  
 }
